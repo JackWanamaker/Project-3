@@ -1,5 +1,5 @@
 package main;
 
-public class Playlist {
+public interface Playlist {
     
 }
