@@ -1,14 +1,13 @@
 package main;
 
 public interface Collection {
-    
     /*
      * Return a string representing all playlist names and their durations
      */
     void allPlaylists();
 
     /*
-     * Return a string representing the contents of a particular playlist
+     * @return Return a string representing the contents of a particular playlist
      */
     void particularPlaylist(Playlist myPlaylist);
 
