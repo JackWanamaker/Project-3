@@ -29,5 +29,7 @@ public class Song {
         return this.releaseYear;
     }
 
-    
+    public String toString(){
+        return songName + " by " + artistName;
+    }
 }
