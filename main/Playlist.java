@@ -5,23 +5,23 @@ public interface Playlist {
     /*
      * Returns a string representing all songs in the playlist
      */
-    void playlistContents();
+    String playlistContents();
 
     /*
      * Calculates and returns the duration of the playlist
      */
-    void playlistDuration();
+    String playlistDuration();
     
     /*
      * Play next song, returning song info and removing it
      * from the playlist.
      */
-    void play_next();
+    String play_next();
 
     /*
      * Return true if empty, false otherwise.
      */
-    void isEmpty();
+    boolean isEmpty();
 
     /*
      * Adds a Song
