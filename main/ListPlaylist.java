@@ -49,4 +49,21 @@ public class ListPlaylist implements Playlist {
         playlistStorage.remove(0);
         return thisSong.toString();
     }
+
+    public boolean isEmpty(){
+        if (playlistStorage.isEmpty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void addSong(Song mySong){
+        playlistStorage.add(mySong);
+    }
+
+    public void removeSong(Song mySong){
+        playlistStorage.remove(mySong);
+    }
 }
