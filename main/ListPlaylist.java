@@ -12,20 +12,18 @@ public class ListPlaylist implements Playlist {
     }
 
     public String playlistContents(){
-        if (playlistStorage.isEmpty()){
-            throw new IllegalArgumentException("Playlist is empty!");
-        }
+        MiscellaneousFuntions.arraylistEmpty(playlistStorage);
+
         String returnString = "";
         for(Song song : playlistStorage){
-            returnString += song.getName() + ", ";
+            returnString += song.toString() + ", ";
         }
         return returnString;
     }
 
-    public String playlistDuration(){
-        if (playlistStorage.isEmpty()){
-            throw new IllegalArgumentException("Playlist is empty!");
-        }
+    public float playlistDuration(){
+        MiscellaneousFuntions.arraylistEmpty(playlistStorage);
+
         int minutes = 0;
         int seconds = 0;
         for (Song song : playlistStorage){
@@ -38,13 +36,12 @@ public class ListPlaylist implements Playlist {
             minutes += 1;
         }
 
-        return "Playlist Duration: " + minutes + " minutes & " + seconds + " seconds.";
+        return minutes + (seconds / 100);
     }
 
     public String play_next(){
-        if (playlistStorage.isEmpty()){
-            throw new IllegalArgumentException("Playlist is empty!");
-        }
+        MiscellaneousFuntions.arraylistEmpty(playlistStorage);
+        
         Song thisSong = playlistStorage.get(0);
         playlistStorage.remove(0);
         return thisSong.toString();

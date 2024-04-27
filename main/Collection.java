@@ -4,12 +4,12 @@ public interface Collection {
     /*
      * Return a string representing all playlist names and their durations
      */
-    void allPlaylists();
+    String allPlaylists();
 
     /*
      * @return Return a string representing the contents of a particular playlist
      */
-    void particularPlaylist(Playlist myPlaylist);
+    String particularPlaylist(Playlist myPlaylist);
 
     /*
      * Removes a playlist
@@ -24,7 +24,7 @@ public interface Collection {
     /*
      * Create a new random playlist of a specified duration
      */
-    void createRandomPlaylist(String playlistName);
+    void createRandomPlaylist(String playlistName, float playlistDuration);
 
     /*
      * Remove a song from all playlists
