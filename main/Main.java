@@ -1,14 +1,12 @@
-package tests;
+package main;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import main.Song;
 
-public class PlaylistTest {
-    
-        public ArrayList<Song> createSongs(String[] args){
+public class Main {
+    public static ArrayList<Song> createSongs(){
         ArrayList<Song> mySongs = new ArrayList<>();
         String file = "song_information.csv";
         BufferedReader reader = null;
@@ -18,10 +16,8 @@ public class PlaylistTest {
             reader = new BufferedReader(new FileReader(file));
             while((line = reader.readLine()) != null){
                 String[] row = line.split(",");
-
-                for(int i = 5; i < row.length; i+=5){
-                    mySongs.add(new Song(row[i], row[i+1], row[i+2], Integer.parseInt(row[i+3]), Float.parseFloat(row[i+4])));
-                }
+                System.out.println(row);
+                mySongs.add(new Song(row[0], row[1], row[2], Integer.parseInt(row[3]), Float.parseFloat(row[4])));
                 
             }
             
@@ -38,5 +34,14 @@ public class PlaylistTest {
             }
         }
         return mySongs;
+    }
+    public static void main(String[] args){
+        ArrayList<Song> myList = createSongs();
+        if (myList.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+        for (Song song : myList){
+        System.out.println(song);
+    }
     }
 }
