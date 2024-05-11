@@ -21,7 +21,7 @@ public class ListPlaylist implements Playlist {
         return returnString;
     }
 
-    public float playlistDuration(){
+    public double playlistDuration(){
         MiscellaneousFuntions.arraylistEmpty(playlistStorage);
 
         int minutes = 0;
@@ -29,17 +29,13 @@ public class ListPlaylist implements Playlist {
         for (Song song : playlistStorage){
             int justMinutes = (int) song.getDuration();
             minutes += justMinutes;
-            float myFloat = (song.getDuration() - justMinutes)*100;
-            int justSeconds = (int) myFloat;
-            if (myFloat == 32){
-                throw new IllegalArgumentException();            
-            }
-            while (justSeconds > 60){
+            seconds += (int) Math.round((song.getDuration() - justMinutes)*100);
+            while (seconds > 60){
                 seconds -= 60;
                 minutes += 1;
             }
         }
-        return minutes + (seconds / 100);
+        return minutes + ( seconds *.01);
     }
 
     public String play_next(){

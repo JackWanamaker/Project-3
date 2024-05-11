@@ -7,9 +7,9 @@ public class Song {
     private String songName;
     private String albumName;
     private int releaseYear;
-    private float songDuration;
+    private double songDuration;
 
-    public Song(String artistName, String songName, String albumName, int releaseYear, float songDuration){
+    public Song(String artistName, String songName, String albumName, int releaseYear, double songDuration){
         this.artistName = artistName;
         this.songName = songName;
         this.albumName = albumName;
@@ -33,7 +33,7 @@ public class Song {
         return releaseYear;
     }
 
-    public float getDuration(){
+    public double getDuration(){
         return songDuration;
     }
 

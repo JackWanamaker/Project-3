@@ -10,7 +10,7 @@ public interface Playlist {
     /*
      * Calculates and returns the duration of the playlist
      */
-    float playlistDuration();
+    double playlistDuration();
     
     /*
      * Play next song, returning song info and removing it
