@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ListPlaylist implements Playlist {
 
-    private ArrayList<Song> playlistStorage;
+    private ArrayList<Song> playlistStorage = new ArrayList<>();
     private String playlistName;
 
     public ListPlaylist(String playlistName){
@@ -29,13 +29,16 @@ public class ListPlaylist implements Playlist {
         for (Song song : playlistStorage){
             int justMinutes = (int) song.getDuration();
             minutes += justMinutes;
-            seconds += (int) (song.getDuration()-justMinutes)*100;
+            float myFloat = (song.getDuration() - justMinutes)*100;
+            int justSeconds = (int) myFloat;
+            if (myFloat == 32){
+                throw new IllegalArgumentException();            
+            }
+            while (justSeconds > 60){
+                seconds -= 60;
+                minutes += 1;
+            }
         }
-        while (seconds > 60){
-            seconds -= 60;
-            minutes += 1;
-        }
-
         return minutes + (seconds / 100);
     }
 

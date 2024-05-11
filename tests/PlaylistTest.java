@@ -1,42 +1,59 @@
 package tests;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import main.Song;
+import main.MiscellaneousFuntions;
+import main.ListPlaylist;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class PlaylistTest {
+    ArrayList<Song> mySongs = MiscellaneousFuntions.createSongs();
+    ListPlaylist myPlaylist = new ListPlaylist("Test Playlist");
     
-        public ArrayList<Song> createSongs(String[] args){
-        ArrayList<Song> mySongs = new ArrayList<>();
-        String file = "song_information.csv";
-        BufferedReader reader = null;
-        String line = "";
+    @Test
+    public void playlistTests(){
+        assertTrue(myPlaylist.isEmpty());
 
-        try{
-            reader = new BufferedReader(new FileReader(file));
-            while((line = reader.readLine()) != null){
-                String[] row = line.split(",");
+        myPlaylist.addSong(mySongs.get(0));
+        assertEquals(myPlaylist.playlistContents(), mySongs.get(0).toString() + ", ");
+        assertEquals(myPlaylist.playlistDuration(), 3.32);
+        assertFalse(myPlaylist.isEmpty());
+        assertEquals(myPlaylist.play_next(), mySongs.get(0).toString());
+        assertTrue(myPlaylist.isEmpty());
 
-                for(int i = 5; i < row.length; i+=5){
-                    mySongs.add(new Song(row[i], row[i+1], row[i+2], Integer.parseInt(row[i+3]), Float.parseFloat(row[i+4])));
-                }
-                
-            }
-            
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        finally{
-            try {
-                reader.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        return mySongs;
+        myPlaylist.addSong(mySongs.get(0));
+        myPlaylist.addSong(mySongs.get(1));
+
+        assertEquals(myPlaylist.play_next(), mySongs.get(0).toString());
+        assertFalse(myPlaylist.isEmpty());
+
+        myPlaylist.addSong(mySongs.get(0));
+        myPlaylist.addSong(mySongs.get(2));
+        myPlaylist.addSong(mySongs.get(3));
+        myPlaylist.addSong(mySongs.get(4));
+        myPlaylist.addSong(mySongs.get(5));
+
+        assertEquals(myPlaylist.playlistDuration(), 25.45);
+        assertEquals(myPlaylist.playlistContents(), mySongs.get(1).toString() + ", " + mySongs.get(0).toString() + ", " + 
+                                                    mySongs.get(2).toString() + ", " + mySongs.get(3).toString() + ", " + 
+                                                    mySongs.get(4).toString() + ", " + mySongs.get(5).toString() + ", ");
+        
+        myPlaylist.removeSong(mySongs.get(0));
+        myPlaylist.removeSong(mySongs.get(1));
+        myPlaylist.removeSong(mySongs.get(2));
+        myPlaylist.removeSong(mySongs.get(3));
+        myPlaylist.removeSong(mySongs.get(4));
+        myPlaylist.removeSong(mySongs.get(5));
+
+        assertTrue(myPlaylist.isEmpty());
     }
+
 }
