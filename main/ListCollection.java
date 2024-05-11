@@ -34,7 +34,7 @@ public class ListCollection implements Collection {
         playlistCollection.add(new ListPlaylist("Unnamed"));
     }
 
-    public void createRandomPlaylist(String playlistName, float playlistDuration){
+    public void createRandomPlaylist(String playlistName, double playlistDuration){
         //Where to continue from
     }
 }
